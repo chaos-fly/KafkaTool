@@ -5,3 +5,5 @@
 不过新的版本的kafka接口改了不少，和这个例子对不上。所以用kafka-clients的api写了个小工具。工具使用有些限制：
 * 修改offset之前，要停掉该consumer-group下所有的consumer
 * 修改的时候，topic的每个partition必须要有至少一条可消费记录
+
+KafkaTool.jar 是build好的包，可以直接使用
