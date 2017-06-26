@@ -124,13 +124,24 @@ public class KafkaTool {
     }
 
     public static void main(String[] args) {
-        System.out.println("kafka tool");
+        if (args.length == 0) {
+            System.out.printf("%noffset保存在kafka，通过该工具修改offset（需要先停掉所有消费者）%n%n");
+            System.out.printf("%nUsage:%n");
+            System.out.printf("        broker-list  topic  consumer-group partition0 offset0 [ partition1 offset1 ... ]%n");
+            return;
+        }
 
-        KafkaTool tool = new KafkaTool("106.38.255.199:9092", "test_topic_1", "test_kafka_test_topic_1");
-
+        String broker = args[0];
+        String topic = args[1];
+        String consumerGrp = args[2];
         Map<Integer, Long> p2offset = new HashMap<>();
-        p2offset.put(0, 21897L);
-        p2offset.put(1, 1300L);
+        for (int i = 3; i < args.length;) {
+            int partition = Integer.parseInt(args[i++]);
+            long offset = Long.parseLong(args[i++]);
+            p2offset.put(partition, offset);
+        }
+
+        KafkaTool tool = new KafkaTool(broker, topic, consumerGrp);
         tool.ResetConsumerGroupOffset(p2offset);
         //tool.TestAssign();
     }
