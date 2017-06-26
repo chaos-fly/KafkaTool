@@ -14,7 +14,7 @@ import java.io.IOException;
 class KafkaTool {
     public static void main(String[] args) {
         System.out.println("kafka");
-        BlockingChannel channel = new BlockingChannel("106.38.255.199", 9092,
+        BlockingChannel channel = new BlockingChannel("127.0.0.1", 9092,
             BlockingChannel.UseDefaultBufferSize(),
             BlockingChannel.UseDefaultBufferSize(),
             5000 /* read timeout in millis */);

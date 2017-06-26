@@ -8,6 +8,7 @@
 /captures
 .externalNativeBuild
 app/libs/armeabi-v7a/
+out/
 
 *.apk
 *.ap_
